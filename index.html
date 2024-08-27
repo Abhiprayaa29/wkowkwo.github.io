@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>HALAMAN UTAMA</title>
+
+    <style>
+        /*ketika mengklik about me*/
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
+
+<style>
+    /* ketika foto di klik */
+    .modal {
+        display: none;
+        position: fixed;
+        z-index: 50;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background-color: rgba(0, 0, 0, 0.5);
+    }
+    .modal-content {
+        position: relative;
+        margin: auto;
+        padding: 20px;
+        width: 90%;
+        max-width: 800px;
+        background-color: #fff;
+        border-radius: 8px;
+    }
+    .modal-content img {
+        width: 100%;
+        height: auto;
+        display: block;
+    }
+    .close {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        color: #aaa;
+        font-size: 24px;
+        font-weight: bold;
+        cursor: pointer;
+    }
+    .close:hover,
+    .close:focus {
+        color: #000;
+        text-decoration: none;
+    }
+</style>
+
+<style>
+    /* musik player*/
+    .music-player {
+        background: #1a202c; /* Dark background */
+        border-radius: 12px;
+        padding: 20px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+    .music-player .controls {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+    .music-player .controls button {
+        background: #2d3748; /* Darker button background */
+        border: none;
+        border-radius: 50%;
+        padding: 10px;
+        color: #fff;
+        cursor: pointer;
+    }
+    .music-player .controls button:hover {
+        background: #4a5568; /* Lighter on hover */
+    }
+    .music-player .progress {
+        background: #4a5568;
+        height: 4px;
+        border-radius: 2px;
+        margin-top: 10px;
+        position: relative;
+    }
+    .music-player .progress .progress-bar {
+        background: #edf2f7; /* Light progress color */
+        height: 100%;
+        width: 0;
+        border-radius: 2px;
+    }
+    .music-player .time {
+        font-size: 0.875rem;
+        color: #e2e8f0; /* Light text color */
+    }
+    .music-player .cover {
+        border-radius: 12px;
+        width: 100%;
+        max-width: 150px;
+        height: 150px;
+        object-fit: cover;
+        margin-bottom: 15px;
+    }
+</style>
+
+</head>
+<body>
+
+    <!-- Header -->
+    <div class="mx-auto max-w-screen-xl px-4 sm:px-9 lg:px-8">
+        <div class="flex h-16 items-center justify-between">
+            <div class="flex-1 md:flex md:items-center md:gap-4"> </div>
+    
+            <div class="md:flex md:items-center md:gap-12">
+                <nav aria-label="Global" class="hidden md:block">
+                    <ul class="flex items-center gap-6 text-sm">
+                        <li>
+                            <a class="text-gray-500 transition hover:text-gray-500/75 border-b-2 border-transparent hover:border-orange-500"
+                                href="#timeline">About Me</a>
+                        </li>
+                        <li>
+                            <a class="text-gray-500 transition hover:text-gray-500/75 border-b-2 border-transparent hover:border-orange-500"
+                                href="#">Experience</a>
+                        </li>
+                    </ul>
+                </nav>
+    
+                <div class="flex items-center gap-4">
+                    <div class="sm:flex sm:gap-4">
+                        <a class="rounded-md bg-red-600 px-5 py-2.5 text-sm font-medium text-white shadow hover:bg-red-700 hover:text-gray-100"
+                            href="https://www.instagram.com/abdabhhii_/">
+                            Instagram
+                        </a>
+                        <div class="hidden sm:flex">
+                            <a class="rounded-md bg-gray-100 px-5 py-2.5 text-sm font-medium text-red-600"
+                                href="and_others.html">
+                                and others
+                            </a>
+                        </div>
+                    </div>
+    
+                    <div class="block md:hidden">
+                        <button id="menu-toggle" class="rounded bg-gray-100 p-2 text-gray-600 transition hover:text-gray-600/75">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="size-5" fill="none" viewBox="0 0 24 24"
+                                stroke="currentColor" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Menu Mobile -->
+    <div id="mobile-menu" class="md:hidden bg-gray-100 text-gray-600 px-4 py-2 overflow-hidden max-h-0 transition-all duration-1000 ease-in-out">
+        <a href="#timeline" class="block py-2">About Me</a>
+        <a href="#" class="block py-2">Experience</a>
+    </div>
+    
+    <script>
+        document.getElementById('menu-toggle').addEventListener('click', function () {
+            var menu = document.getElementById('mobile-menu');
+    
+            if (menu.classList.contains('max-h-0')) {
+                menu.classList.remove('max-h-0');
+                menu.classList.add('max-h-50'); // Adjust this value depending on the content height
+            } else {
+                menu.classList.add('max-h-0');
+                menu.classList.remove('max-h-50');
+            }
+        });
+    </script>
+    <!-- Header -->
+
+    <!-- Content Utama -->
+    <section class="section-container relative bg-gray-900 text-white overflow-hidden">
+        <div class="relative mx-auto max-w-screen-xl px-4 py-32 lg:flex lg:h-screen lg:items-center">
+            <div class="mx-auto max-w-3xl text-center">
+                <h1 class="bg-gradient-to-r from-orange-500 via-red-600 to-orange-500 bg-clip-text text-3xl font-extrabold text-transparent sm:text-5xl">
+                    My Name Is Abhi
+                    <span class="sm:block">I'm A Web Developer</span>
+                </h1>
+                <p class="mx-auto mt-4 max-w-xl sm:text-xl/relaxed">
+                    Welcome To My Portfolio
+                </p>
+            </div>
+        </div>
+    </section>
+    <!-- Content Utama -->
+
+    <!-- About Me -->
+    <section id="timeline" class="bg-gray-100 flex items-center">
+        <div class="flex flex-col sm:flex-row items-center justify-center w-full max-w-screen-xl mx-auto p-8 lg:px-16 lg:py-24">
+            <div class="w-full sm:w-1/2 p-4">
+                <h2 class="text-2xl font-bold text-gray-900 md:text-3xl text-center sm:text-left">
+                    About Me
+                </h2>
+                <p class="text-gray-500 mt-4 text-center sm:text-left">
+                    Let me introduce myself, my name is Abdillah Abhipraya Abrar, you can call me Abhi. I was born in Klaten on August 29, 2005, I lived in Klaten for 6 years, then in 2012 I moved to Kebumen until now.
+                </p>
+            </div>
+            <div class="w-full sm:w-1/2 p-4">
+                <img
+                    alt="Abhi"
+                    src="abhi.jpg"
+                    class="w-full h-full object-cover filter grayscale transition duration-500 ease-in-out hover:filter-none"
+                />
+            </div>
+        </div>
+    </section>
+    <!-- About Me -->
+
+    <!--fotografi-->
+    <section class="bg-white text-gray-900 py-8 flex items-center justify-center"> 
+        <div class="max-w-screen-xl px-4 py-8 sm:px-6 sm:py-12 lg:px-8 lg:py-16 text-center">
+            <div class="max-w-xl mx-auto">
+                <h2 class="text-3xl text-orange-600 font-bold sm:text-4xl">Photography</h2>
+                <p class="mt-4 text-gray-600">
+                    I have a hobby of photography, I have really liked photography for almost 6 years, and these are some of my photos:
+                </p>
+            </div>
+            <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6 mt-8"> 
+                <a href="#" class="group relative photo-container" data-src="foto1.jpg">
+                    <img class="w-full object-cover bg-gray-100 rounded-lg transition-transform transform group-hover:scale-105 dark:bg-neutral-800" src="foto1.jpg" alt="Project">
+                </a>
+                <a href="#" class="group relative photo-container" data-src="foto2.jpg">
+                    <img class="w-full object-cover bg-gray-100 rounded-lg transition-transform transform group-hover:scale-105 dark:bg-neutral-800" src="foto2.jpg" alt="Project">
+                </a>
+                <a href="#" class="group relative photo-container" data-src="foto3.jpg">
+                    <img class="w-full object-cover bg-gray-100 rounded-lg transition-transform transform group-hover:scale-105 dark:bg-neutral-800" src="foto3.jpg" alt="Project">
+                </a>
+                <a href="#" class="group relative photo-container" data-src="foto4.jpg">
+                    <img class="w-full object-cover bg-gray-100 rounded-lg transition-transform transform group-hover:scale-105 dark:bg-neutral-800" src="foto4.jpg" alt="Project">
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!--musik-->
+<!-- Music Section -->
+<section class="bg-white text-gray-900 py-2 flex items-center justify-center">
+    <div class="max-w-screen-xl px-4 py-2 sm:px-6 sm:py-4 lg:px-8 lg:py-8 text-center">
+        <div class="max-w-xl mx-auto">
+            <h2 class="text-3xl text-orange-600 font-bold sm:text-4xl">Listening to music</h2>
+            <p class="mt-1 text-gray-900">
+                To fill my lonely days, I like to listen to music, even while driving. This is one of the music I listen to most often at the moment:
+            </p>
+        </div>
+    </div>
+</section>
+
+<!-- Music Player Section -->
+<section class="bg-white py-2">
+    <div class="max-w-screen-xl px-4 py-2 mx-auto bg-white text-gray-900">
+        <div class="music-player text-center">
+            <img src="bil.jpeg" alt="Album Cover" class="cover mx-auto">
+            <div class="text-center mt-2">
+                <h2 class="text-xl text-orange-600 font-semibold">"BIRDS OF A FEATHER"</h2>
+                <p class="text-gray-600">Billie Eilish</p>
+            </div>
+            <div class="controls mt-2 flex justify-center space-x-4">
+                <button id="play-pause" class="flex items-center justify-center w-12 h-12 bg-gray-700 rounded-full focus:outline-none">
+                    <svg id="play-icon" class="w-6 h-6 text-white block" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v18l14-9L5 3z"></path>
+                    </svg>
+                    <svg id="pause-icon" class="w-6 h-6 text-white hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19h4V5h-4v14zm-6 0h4V5H4v14z"></path>
+                    </svg>
+                </button>
+            </div>
+            <div class="progress mt-2 relative bg-gray-300 rounded-full w-full">
+                <input type="range" id="slider" class="slider absolute top-0 left-0 h-full w-full bg-gray-700 rounded-full" min="100" value="100">
+            </div>
+            
+            <div class="time mt-1 flex justify-between text-gray-600">
+                <span class="current-time">0:00</span>
+                <span class="total-time">3:31 </span>
+            </div>
+            <audio id="audio" src="Billie Eilish - BIRDS OF A FEATHER (Official Lyric Video).mp3"></audio>
+        </div>
+    </div>
+</section>
+
+<!-- Modal -->
+<div id="myModal" class="modal">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <img id="modalImage" src="" alt="Modal Image">
+    </div>
+</div>
+
+<script>
+    // Modal elements
+    var modal = document.getElementById("myModal");
+    var modalImg = document.getElementById("modalImage");
+    var closeBtn = document.getElementsByClassName("close")[0];
+
+    // Open modal when image is clicked
+    document.querySelectorAll('.photo-container').forEach(item => {
+        item.addEventListener('click', function(e) {
+            e.preventDefault();
+            var imgSrc = this.getAttribute('data-src');
+            modal.style.display = "flex";
+            modalImg.src = imgSrc;
+        });
+    });
+
+    // Close modal when close button is clicked
+    closeBtn.onclick = function() {
+        modal.style.display = "none";
+    };
+
+    // Close modal when clicking outside of the modal
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    };
+
+    // MUSIK PLAYER SAMA BUNDER
+
+    audio.addEventListener('loadedmetadata', () => {
+        slider.max = audio.duration;
+        totalTimeElem.textContent = formatTime(audio.duration);
+    });
+
+    audio.addEventListener('timeupdate', () => {
+        slider.value = audio.currentTime;
+        currentTimeElem.textContent = formatTime(audio.currentTime);
+    });
+
+    slider.addEventListener('input', () => {
+        audio.currentTime = slider.value;
+    });
+
+    playPauseButton.addEventListener('click', () => {
+        if (audio.paused) {
+            audio.play();
+            playIcon.classList.add('hidden');
+            pauseIcon.classList.remove('hidden');
+        } else {
+            audio.pause();
+            playIcon.classList.remove('hidden');
+            pauseIcon.classList.add('hidden');
+        }
+    });
+
+    function formatTime(seconds) {
+        const minutes = Math.floor(seconds / 60);
+        const secs = Math.floor(seconds % 60);
+        return `${minutes}:${secs < 10 ? '0' : ''}${secs}`;
+    }
+</script>
+
+
+
+    <!--quotes ala ala-->
+    <figure class="bg-gray-900 text-white p-8 shadow-lg">
+        <svg class="w-10 h-10 mx-auto mb-6 text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 18 14">
+            <path d="M6 0H2a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h4v1a3 3 0 0 1-3 3H2a1 1 0 0 0 0 2h1a5.006 5.006 0 0 0 5-5V2a2 2 0 0 0-2-2Zm10 0h-4a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h4v1a3 3 0 0 1-3 3h-1a1 1 0 0 0 0 2h1a5.006 5.006 0 0 0 5-5V2a2 2 0 0 0-2-2Z"/>
+        </svg>
+        <blockquote class="text-center mb-6">
+            <p class="text-xl italic font-medium text-gray-100">
+                “Live as if you were to die tomorrow. Learn as if you were to live forever.”
+            </p>
+        </blockquote>
+        <figcaption class="flex items-center justify-center space-x-3 rtl:space-x-reverse">
+            <img class="w-12 h-12 border-2 border-gray-600" src="gandi.jpg" alt="profile picture">
+            <div class="flex items-center divide-x-2 divide-gray-500">
+                <cite class="pe-3 font-medium text-gray-100">Mahatma Gandhi</cite>
+            </div>
+        </figcaption>
+    </figure>
+    <!--quotes ala ala-->
+ 
+    <script>
+        const playPauseButton = document.getElementById('play-pause');
+        const playIcon = document.getElementById('play-icon');
+        const pauseIcon = document.getElementById('pause-icon');
+        const audio = document.getElementById('audio');
+        const currentTimeElement = document.querySelector('.current-time');
+        const totalTimeElement = document.querySelector('.total-time');
+        const progressBar = document.querySelector('.progress-bar');
+
+        // Update total time on load
+        audio.addEventListener('loadedmetadata', () => {
+            const totalTime = formatTime(audio.duration);
+            totalTimeElement.textContent = totalTime;
+            progressBar.style.width = '0%';
+        });
+
+        // Update current time and progress bar as the audio plays
+        audio.addEventListener('timeupdate', () => {
+            const currentTime = formatTime(audio.currentTime);
+            currentTimeElement.textContent = currentTime;
+            const progressPercentage = (audio.currentTime / audio.duration) * 100;
+            progressBar.style.width = `${progressPercentage}%`;
+        });
+
+        // Play/Pause button functionality
+        playPauseButton.addEventListener('click', () => {
+            if (audio.paused) {
+                audio.play();
+                playIcon.classList.add('hidden');
+                pauseIcon.classList.remove('hidden');
+            } else {
+                audio.pause();
+                playIcon.classList.remove('hidden');
+                pauseIcon.classList.add('hidden');
+            }
+        });
+
+        // Format time to mm:ss
+        function formatTime(seconds) {
+            const minutes = Math.floor(seconds / 60);
+            const secs = Math.floor(seconds % 60);
+            return `${String(minutes).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
+        }
+    </script>
+    
+</body>
+</html>
